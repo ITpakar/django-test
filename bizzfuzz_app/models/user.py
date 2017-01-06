@@ -17,7 +17,7 @@ class User(models.Model):
         today = date.today()
         age = today.year - self.birthday.year - ((today.month, today.day) < (self.birthday.month, self.birthday.day))
 
-        return "blocked" if age > 13 else "allowed"
+        return "allowed" if age > 13 else "blocked"
 
     def get_bizzfuzz(self):
         number = self.number
