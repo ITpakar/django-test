@@ -1,0 +1,30 @@
+{% load bizzfuzz_extras %}
+<h1>Users</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Birthday</th>
+            <th>Eligible</th>
+            <th>Random Number</th>
+            <th>BizzFuzz</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    {% for user in object_list %}
+    <tr>
+        <td>{{ user.name }}</td>
+        <td>{{ user.birthday }}</td>
+        <td>{% get_eligibility user %}</td>
+        <td>{{ user.number }}</td>
+        <td>{% get_bizzfuzz user %}</td>
+        <td>
+            <a href="{% url "user_edit" user.id %}">Edit</a>
+            <a href="{% url "user_delete" user.id %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<br/>
+<a href="{% url "user_new" %}">New User</a>
+<a href="{% url 'export_users' %}">Export all users</a>
